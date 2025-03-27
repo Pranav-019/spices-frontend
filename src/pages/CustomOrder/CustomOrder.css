@@ -1,0 +1,200 @@
+.custom-order {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.custom-order h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Order Form Styles */
+.order-form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.order-form {
+  display: grid;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submit-button {
+  background-color: #FF4C24;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #e63e1c;
+}
+
+/* Order Tracking Styles */
+.order-tracking {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-tracking h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.tracking-container {
+  position: relative;
+  padding: 20px 0;
+}
+
+.tracking-steps {
+  position: relative;
+}
+
+.tracking-line {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  height: 2px;
+  background: #dee2e6;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.tracking-step {
+  position: relative;
+  z-index: 2;
+}
+
+.step-icon {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 20px;
+  color: #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.step-info {
+  text-align: center;
+}
+
+.step-info h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.step-info p {
+  font-size: 12px;
+  color: #999;
+  margin: 0;
+}
+
+/* Completed Step Styles */
+.tracking-step.completed .step-icon {
+  border-color: #e63e1c;
+  color: #e63e1c;
+  background: #fff;
+}
+
+.tracking-step.completed .step-info h3 {
+  color: #e63e1c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tracking-steps {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .tracking-line {
+    width: 2px;
+    height: 100%;
+    left: 25px;
+    top: 0;
+  }
+
+  .tracking-step {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+  }
+
+  .step-icon {
+    margin: 0;
+  }
+
+  .step-info {
+    flex: 1;
+  }
+}
+
+/* Custom button styles */
+.btn-primary {
+  background-color: #FF4C24;
+  border-color: #FF4C24;
+}
+
+.btn-primary:hover:not(.disabled) {
+  background-color: #e63e1c;
+  border-color: #e63e1c;
+}
+
+.btn-primary.disabled {
+  background-color: #ff4c24;
+  border-color: #ff4c24;
+  opacity: 0.65;
+}
+
+/* Form styles */
+.form-control:focus,
+.form-select:focus {
+  border-color: #FF4C24;
+  box-shadow: 0 0 0 0.25rem rgba(255, 76, 36, 0.25);
+} 
