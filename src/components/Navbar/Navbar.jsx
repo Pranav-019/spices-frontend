@@ -61,7 +61,7 @@ const Navbar = ({setShowLogin, onMenuClick}) => {
 
   const menuItems = [
     { name: "home", label: "Home", path: "/" },
-    { name: "menu", label: "Menu", path: "/", onClick: onMenuClick },
+    // { name: "menu", label: "Menu", path: "/", onClick: onMenuClick },
     { name: "mob-app", label: "Custom Order", path: "custom-order" },
     { name: "contact", label: "Contact us", path: "/footer" }
   ];
