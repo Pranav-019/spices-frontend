@@ -26,7 +26,7 @@ const Cart = () => {
 
     const handleCheckout = async () => {
         try {
-            const { data } = await axios.post('http://localhost:5000/api/create-order', { 
+            const { data } = await axios.post('https://spices-backend-2jr1.vercel.app/api/create-order', { 
                 amount: total  // Using the calculated total
             });
 
@@ -45,7 +45,7 @@ const Cart = () => {
                             razorpay_signature: response.razorpay_signature
                         };
 
-                        const verifyRes = await axios.post('http://localhost:5000/api/verify-payment', paymentData);
+                        const verifyRes = await axios.post('https://spices-backend-2jr1.vercel.app/api/verify-payment', paymentData);
 
                         if (verifyRes.data.success) {
                             alert('Payment Successful! Redirecting to checkout...');

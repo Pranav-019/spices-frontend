@@ -18,7 +18,7 @@ const StoreContextProvider = (props) => {
     useEffect(() => {
         setIsLoading(true);
         setError(null);
-        axios.get('http://localhost:5000/api/products')
+        axios.get('https://spices-backend-2jr1.vercel.app/api/products')
             .then(response => {
                 setFoodList(response.data);
             })

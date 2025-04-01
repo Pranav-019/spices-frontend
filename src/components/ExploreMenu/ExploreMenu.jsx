@@ -10,7 +10,7 @@ const ExploreMenu = ({ category, setCategory }) => {
 
   // Fetch menu list from API
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
+    axios.get('https://spices-backend-2jr1.vercel.app/api/products')
       .then((response) => {
         // Filter out duplicate categories by creating a Set of category names
         const uniqueCategories = [

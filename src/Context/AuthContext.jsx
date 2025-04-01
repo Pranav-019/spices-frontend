@@ -7,37 +7,34 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // Initialize axios interceptors
     useEffect(() => {
-        const checkAuth = async () => {
-            const token = localStorage.getItem('userToken');
-            console.log('Checking auth with token:', token); // Debug log
+        const token = localStorage.getItem('userToken');
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        }
 
-            if (token) {
-                try {
-                    // Set token in axios headers
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                    
-                    // Get user data
-                    const response = await axios.get('http://localhost:5000/api/auth/user');
-                    console.log('User data received:', response.data); // Debug log
-                    
+        const checkAuth = async () => {
+            try {
+                if (token) {
+                    const response = await axios.get('https://spices-backend.vercel.app/api/auth/user');
                     setUser(response.data);
-                } catch (error) {
-                    console.error('Auth check failed:', error);
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                if (error.response?.status === 401) {
                     localStorage.removeItem('userToken');
                     delete axios.defaults.headers.common['Authorization'];
                 }
-            } else {
-                console.log('No token found'); // Debug log
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         };
 
         checkAuth();
     }, []);
 
-    const login = async (userData) => {
-        console.log('Setting user:', userData); // Debug log
+    const login = (userData) => {
         setUser(userData);
     };
 
@@ -47,18 +44,9 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
-    const value = {
-        user,
-        setUser: login,
-        logout,
-        loading
-    };
-
-    console.log('Current auth state:', { user, loading }); // Debug log
-
     return (
-        <AuthContext.Provider value={value}>
+        <AuthContext.Provider value={{ user, setUser: login, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );
-}; 
+};

@@ -9,7 +9,7 @@ const FoodItem = ({ _id, name, price, description, image }) => {
 
     const handleBuyNow = async () => {
         try {
-            const { data } = await axios.post('http://localhost:5000/api/create-order', { 
+            const { data } = await axios.post('https://spices-backend-2jr1.vercel.app/api/create-order', { 
                 amount: price 
             });
 
@@ -22,7 +22,7 @@ const FoodItem = ({ _id, name, price, description, image }) => {
                 order_id: data.id,
                 handler: async function (response) {
                     try {
-                        const verifyRes = await axios.post('http://localhost:5000/api/verify-payment', {
+                        const verifyRes = await axios.post('https://spices-backend-2jr1.vercel.app/api/verify-payment', {
                             razorpay_order_id: response.razorpay_order_id,
                             razorpay_payment_id: response.razorpay_payment_id,
                             razorpay_signature: response.razorpay_signature

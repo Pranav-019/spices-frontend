@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react'
-import './LoginPopup.css'
-import { assets } from '../../assets/assets'
-import { AuthContext } from '../../Context/AuthContext'
-import axios from 'axios'
+import React, { useState, useContext } from 'react';
+import './LoginPopup.css';
+import { assets } from '../../assets/assets';
+import { AuthContext } from '../../Context/AuthContext';
+import axios from 'axios';
 
-const LoginPopup = ({setShowLogin}) => {
+const LoginPopup = ({ setShowLogin }) => {
     const [currState, setCurrState] = useState("Sign Up");
     const [formData, setFormData] = useState({
         name: '',
@@ -20,7 +20,7 @@ const LoginPopup = ({setShowLogin}) => {
             ...formData,
             [e.target.name]: e.target.value
         });
-        setError(''); // Clear error when user types
+        setError('');
     };
 
     const handleSubmit = async (e) => {
@@ -29,41 +29,37 @@ const LoginPopup = ({setShowLogin}) => {
         setError('');
 
         try {
-            if (currState === "Sign Up") {
-                const response = await axios.post('http://localhost:5000/api/auth/signup', {
-                    name: formData.name,
-                    email: formData.email,
-                    password: formData.password
-                });
-                
-                console.log('Signup response:', response.data); // Debug log
-                
-                if (response.data && response.data.token) {
-                    localStorage.setItem('userToken', response.data.token);
-                    // Set axios default header
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-                    setUser(response.data.user);
-                    setShowLogin(false);
-                }
-            } else {
-                const response = await axios.post('http://localhost:5000/api/auth/login', {
-                    email: formData.email,
-                    password: formData.password
-                });
+            const url = currState === "Sign Up" 
+                ? 'https://spices-backend.vercel.app/api/auth/signup' 
+                : 'https://spices-backend.vercel.app/api/auth/login';
 
-                console.log('Login response:', response.data); // Debug log
+            const payload = currState === "Sign Up" 
+                ? { name: formData.name, email: formData.email, password: formData.password }
+                : { email: formData.email, password: formData.password };
 
-                if (response.data && response.data.token) {
-                    localStorage.setItem('userToken', response.data.token);
-                    // Set axios default header
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-                    setUser(response.data.user);
-                    setShowLogin(false);
-                }
-            }
+            const response = await axios.post(url, payload);
+            
+            // Store token and update user context
+            localStorage.setItem('userToken', response.data.token);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+            setUser(response.data.user);
+            
+            // Close popup
+            setShowLogin(false);
         } catch (err) {
-            console.error('Auth error:', err); // Debug log
-            setError(err.response?.data?.message || 'Something went wrong. Please try again.');
+            console.error('Auth error:', err);
+            
+            if (err.response) {
+                if (err.response.status === 401) {
+                    setError('Invalid email or password');
+                } else {
+                    setError(err.response.data?.message || `Error: ${err.response.status}`);
+                }
+            } else if (err.request) {
+                setError('No response from server. Please check your connection.');
+            } else {
+                setError('An unexpected error occurred');
+            }
         } finally {
             setLoading(false);
         }
@@ -74,7 +70,7 @@ const LoginPopup = ({setShowLogin}) => {
             <div className="login-popup-container">
                 <div className="login-popup-title">
                     <h2>{currState}</h2>
-                    <img onClick={()=>setShowLogin(false)} src={assets.cross_icon} alt="" />
+                    <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="Close" />
                 </div>
                 <form onSubmit={handleSubmit} className="login-popup-inputs">
                     {currState === "Sign Up" && (
@@ -102,10 +98,11 @@ const LoginPopup = ({setShowLogin}) => {
                         value={formData.password}
                         onChange={handleInputChange}
                         required
+                        minLength={6}
                     />
                     {error && <p className="error-message">{error}</p>}
                     <button type="submit" disabled={loading}>
-                        {loading ? 'Please wait...' : (currState === "Login" ? "Login" : "Create account")}
+                        {loading ? 'Please wait...' : currState === "Login" ? "Login" : "Create account"}
                     </button>
                 </form>
                 <div className="login-popup-condition">
@@ -113,12 +110,12 @@ const LoginPopup = ({setShowLogin}) => {
                     <p>By continuing, I agree to the terms of use & privacy policy.</p>
                 </div>
                 {currState === "Login" 
-                    ? <p>Create a new account? <span onClick={()=>setCurrState('Sign Up')}>Click here</span></p>
-                    : <p>Already have an account? <span onClick={()=>setCurrState('Login')}>Login here</span></p>
+                    ? <p>Create a new account? <span onClick={() => setCurrState('Sign Up')}>Click here</span></p>
+                    : <p>Already have an account? <span onClick={() => setCurrState('Login')}>Login here</span></p>
                 }
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default LoginPopup
+export default LoginPopup;
