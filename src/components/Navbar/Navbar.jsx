@@ -59,11 +59,19 @@ const Navbar = ({setShowLogin, onMenuClick}) => {
     setShowUserMenu(!showUserMenu);
   };
 
+  const scrollToFooter = () => {
+    const footer = document.getElementById('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth' });
+    }
+    closeMenu();
+  };
+
   const menuItems = [
     { name: "home", label: "Home", path: "/" },
     { name: "order", label: "Orders", path: "/orders" },
     { name: "mob-app", label: "Pre Booking", path: "custom-order" },
-    { name: "contact", label: "Contact us", path: "/footer" }
+    { name: "contact", label: "Contact us", onClick: scrollToFooter }
   ];
 
   return (
@@ -79,17 +87,32 @@ const Navbar = ({setShowLogin, onMenuClick}) => {
       {/* Desktop Menu */}
       <ul className="navbar-menu desktop-menu">
         {menuItems.map((item) => (
-          <Link
-            key={item.name}
-            to={item.path}
-            onClick={() => {
-              setMenu(item.name);
-              if (item.onClick) item.onClick();
-            }}
-            className={`${menu === item.name ? "active" : ""}`}
-          >
-            {item.label}
-          </Link>
+          item.onClick ? (
+            <a
+              key={item.name}
+              href="#footer"
+              onClick={(e) => {
+                e.preventDefault();
+                setMenu(item.name);
+                item.onClick();
+              }}
+              className={`${menu === item.name ? "active" : ""}`}
+            >
+              {item.label}
+            </a>
+          ) : (
+            <Link
+              key={item.name}
+              to={item.path}
+              onClick={() => {
+                setMenu(item.name);
+                if (item.onClick) item.onClick();
+              }}
+              className={`${menu === item.name ? "active" : ""}`}
+            >
+              {item.label}
+            </Link>
+          )
         ))}
       </ul>
 
@@ -102,16 +125,30 @@ const Navbar = ({setShowLogin, onMenuClick}) => {
         <ul className="mobile-menu-items">
           {menuItems.map((item) => (
             <li key={item.name}>
-              <Link
-                to={item.path}
-                onClick={() => {
-                  setMenu(item.name);
-                  closeMenu();
-                }}
-                className={`${menu === item.name ? "active" : ""}`}
-              >
-                {item.label}
-              </Link>
+              {item.onClick ? (
+                <a
+                  href="#footer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMenu(item.name);
+                    item.onClick();
+                  }}
+                  className={`${menu === item.name ? "active" : ""}`}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  to={item.path}
+                  onClick={() => {
+                    setMenu(item.name);
+                    closeMenu();
+                  }}
+                  className={`${menu === item.name ? "active" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              )}
             </li>
           ))}
           <li className="mobile-user-section">

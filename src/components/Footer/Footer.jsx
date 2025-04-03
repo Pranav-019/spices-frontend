@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Footer.css';
 import { assets } from '../../assets/assets';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -37,9 +38,11 @@ const Footer = () => {
                 and delivery tracking make every meal an adventure.
               </p>
               <div className="social-icons d-flex gap-3">
-                <a href="https://facebook.com"><img src={assets.facebook_icon} alt="Facebook" width="30" /></a>
-                <a href="https://twitter.com"><img src={assets.twitter_icon} alt="Twitter" width="30" /></a>
-                <a href="https://linkedin.com"><img src={assets.linkedin_icon} alt="LinkedIn" width="30" /></a>
+                <a href="https://facebook.com" aria-label="Facebook"><FaFacebook size={24} /></a>
+                <a href="https://twitter.com" aria-label="Twitter"><FaTwitter size={24} /></a>
+                <a href="https://linkedin.com" aria-label="LinkedIn"><FaLinkedin size={24} /></a>
+                <a href="https://instagram.com" aria-label="Instagram"><FaInstagram size={24} /></a>
+                <a href="https://youtube.com" aria-label="YouTube"><FaYoutube size={24} /></a>
               </div>
             </div>
           </div>
@@ -192,7 +195,7 @@ const Footer = () => {
         <hr className="my-4" />
         
         <div className="text-center">
-          <p className="copyright">© 2024 Masala Mingle. All Rights Reserved.</p>
+          <p className="copyright">© {new Date().getFullYear()} Masala Mingle. All Rights Reserved.</p>
         </div>
       </div>
     </div>
