@@ -9,6 +9,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import MyOrders from './pages/MyOrders/MyOrders';
 import CustomOrder from './pages/CustomOrder/CustomOrder';
 import { AuthProvider } from './Context/AuthContext';
+import ProductOrder from './pages/ProductOrder/productorder';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -29,7 +30,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/orders" element={<ProductOrder />} />
           <Route path="/myorder" element={<MyOrders />} />
           <Route path="/custom-order" element={<CustomOrder />} />
         </Routes>

@@ -290,7 +290,7 @@ const CustomOrder = () => {
         <FaBars />
       </button>
 
-      <h1>Custom Order</h1>
+      <h1>Pre Booking</h1>
 
       {error && (
         <div className="error-message">
@@ -400,7 +400,7 @@ const CustomOrder = () => {
 
         {/* Order History Section */}
         <div className={`order-history-section ${mobileMenuOpen ? 'mobile-visible' : ''}`}>
-          <h2>Your Orders</h2>
+          <h2>Your Bookings</h2>
           {userOrders.length === 0 ? (
             <p className="no-orders">No orders found</p>
           ) : (
