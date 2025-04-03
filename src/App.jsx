@@ -9,7 +9,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import MyOrders from './pages/MyOrders/MyOrders';
 import CustomOrder from './pages/CustomOrder/CustomOrder';
 import { AuthProvider } from './Context/AuthContext';
-import ProductOrder from './pages/ProductOrder/productorder';
+import ProductOrder from './pages/ProductOrderProductorder';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
