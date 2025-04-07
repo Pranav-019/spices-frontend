@@ -279,3 +279,9 @@
         text-align: center;
     }
 }
+
+.add-address-form-scrollable {
+    max-height: 400px; /* Adjust based on your design */
+    overflow-y: auto;
+    padding: 10px;
+}

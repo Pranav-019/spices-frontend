@@ -666,112 +666,120 @@ const Cart = () => {
                                 </div>
                             </>
                         ) : (
-                            <div className="add-address-form">
-                                <button 
-                                    className="back-button"
-                                    onClick={() => setShowAddAddressForm(false)}
-                                >
-                                    <FaTimes /> Back to Address List
-                                </button>
-                                
-                                <form onSubmit={handleAddAddressSubmit}>
-                                    <div className="form-group">
-                                        <label>House/Flat No*</label>
-                                        <input
-                                            type="text"
-                                            name="houseFlatNo"
-                                            value={newAddress.houseFlatNo}
-                                            onChange={handleAddressInputChange}
-                                            required
-                                        />
-                                    </div>
-                                    
-                                    <div className="form-group">
-                                        <label>Landmark</label>
-                                        <input
-                                            type="text"
-                                            name="landmark"
-                                            value={newAddress.landmark}
-                                            onChange={handleAddressInputChange}
-                                        />
-                                    </div>
-                                    
-                                    <div className="form-group">
-                                        <label>Street*</label>
-                                        <input
-                                            type="text"
-                                            name="street"
-                                            value={newAddress.street}
-                                            onChange={handleAddressInputChange}
-                                            required
-                                        />
-                                    </div>
-                                    
-                                    <div className="form-group">
-                                        <label>Area*</label>
-                                        <input
-                                            type="text"
-                                            name="area"
-                                            value={newAddress.area}
-                                            onChange={handleAddressInputChange}
-                                            required
-                                        />
-                                    </div>
-                                    
-                                    <div className="form-group">
-                                        <label>City*</label>
-                                        <input
-                                            type="text"
-                                            name="city"
-                                            value={newAddress.city}
-                                            onChange={handleAddressInputChange}
-                                            required
-                                        />
-                                    </div>
-                                    
-                                    <div className="form-group">
-                                        <label>State*</label>
-                                        <input
-                                            type="text"
-                                            name="state"
-                                            value={newAddress.state}
-                                            onChange={handleAddressInputChange}
-                                            required
-                                        />
-                                    </div>
-                                    
-                                    <div className="form-group">
-                                        <label>Pincode*</label>
-                                        <input
-                                            type="text"
-                                            name="pincode"
-                                            value={newAddress.pincode}
-                                            onChange={handleAddressInputChange}
-                                            required
-                                            pattern="\d{6}"
-                                            title="Pincode must be 6 digits"
-                                        />
-                                    </div>
-                                    
-                                    <div className="form-group checkbox-group">
-                                        <input
-                                            type="checkbox"
-                                            id="setAsDefault"
-                                            name="isDefault"
-                                            checked={newAddress.isDefault}
-                                            onChange={(e) => setNewAddress({
-                                                ...newAddress,
-                                                isDefault: e.target.checked
-                                            })}
-                                        />
-                                        <label htmlFor="setAsDefault">Set as default address</label>
-                                    </div>
-                                    
-                                    <button type="submit" className="save-address-button">
-                                        Save Address
-                                    </button>
-                                </form>
-                            </div>
+                                 // Add New Address Form
+                                 <div className="add-address-form-container">
+                                 <div className="add-address-form-header">
+                                     <button
+                                         className="back-button"
+                                         onClick={() => setShowAddAddressForm(false)}
+                                     >
+                                         <FaTimes /> Back to Address List
+                                     </button>
+                                     <h4>Add New Address</h4>
+                                 </div>
+                                 <div className="add-address-form-scrollable">
+                                     <form onSubmit={handleAddAddressSubmit}>
+                                         <div className="form-row">
+                                             <div className="form-group">
+                                                 <label>House/Flat No*</label>
+                                                 <input
+                                                     type="text"
+                                                     name="houseFlatNo"
+                                                     value={newAddress.houseFlatNo}
+                                                     onChange={handleAddressInputChange}
+                                                     required
+                                                 />
+                                             </div>
+                                             <div className="form-group">
+                                                 <label>Landmark</label>
+                                                 <input
+                                                     type="text"
+                                                     name="landmark"
+                                                     value={newAddress.landmark}
+                                                     onChange={handleAddressInputChange}
+                                                 />
+                                             </div>
+                                         </div>
+                                         <div className="form-row">
+                                             <div className="form-group">
+                                                 <label>Street*</label>
+                                                 <input
+                                                     type="text"
+                                                     name="street"
+                                                     value={newAddress.street}
+                                                     onChange={handleAddressInputChange}
+                                                     required
+                                                 />
+                                             </div>
+                                             <div className="form-group">
+                                                 <label>Area*</label>
+                                                 <input
+                                                     type="text"
+                                                     name="area"
+                                                     value={newAddress.area}
+                                                     onChange={handleAddressInputChange}
+                                                     required
+                                                 />
+                                             </div>
+                                         </div>
+                                         <div className="form-row">
+                                             <div className="form-group">
+                                                 <label>City*</label>
+                                                 <input
+                                                     type="text"
+                                                     name="city"
+                                                     value={newAddress.city}
+                                                     onChange={handleAddressInputChange}
+                                                     required
+                                                 />
+                                             </div>
+                                             <div className="form-group">
+                                                 <label>State*</label>
+                                                 <input
+                                                     type="text"
+                                                     name="state"
+                                                     value={newAddress.state}
+                                                     onChange={handleAddressInputChange}
+                                                     required
+                                                 />
+                                             </div>
+                                         </div>
+                                         <div className="form-group">
+                                             <label>Pincode*</label>
+                                             <input
+                                                 type="text"
+                                                 name="pincode"
+                                                 value={newAddress.pincode}
+                                                 onChange={handleAddressInputChange}
+                                                 required
+                                             />
+                                         </div>
+                                         <div className="form-group checkbox-group">
+                                             <input
+                                                 type="checkbox"
+                                                 id="setAsDefault"
+                                                 name="isDefault"
+                                                 checked={newAddress.isDefault}
+                                                 onChange={(e) =>
+                                                     setNewAddress({
+                                                         ...newAddress,
+                                                         isDefault: e.target.checked,
+                                                     })
+                                                 }
+                                             />
+                                             <label htmlFor="setAsDefault">
+                                                 Set as default address
+                                             </label>
+                                         </div>
+                                         <button
+                                             type="submit"
+                                             className="save-address-button"
+                                         >
+                                             Save Address
+                                         </button>
+                                     </form>
+                                 </div>
+                             </div>
                         )}
                         
                         {!showAddAddressForm && (

@@ -9,7 +9,7 @@ const FoodDisplay = ({ category }) => {
   if (isLoading) {
     return (
       <div className="loading-container">
-        <div className="loading-spinner">Loading products...</div>
+        <div className="loading-text">Loading products...</div>
       </div>
     );
   }
