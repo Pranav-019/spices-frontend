@@ -70,7 +70,7 @@ const FoodItem = ({ _id, name, price, description, image }) => {
                 } catch (error) {
                     console.error('Error fetching user addresses:', error);
                     setUpdateError(
-                        'Failed to load your addresses. Please try again.'
+                        'No saved addresses found, please add a new address'
                     );
                 }
             }

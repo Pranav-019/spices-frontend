@@ -292,7 +292,7 @@
     margin-left: 10px;
 }
 
-.address-options {
+.address-options-scrollable {
     display: flex;
     justify-content: space-between;
     margin: 15px 0;
